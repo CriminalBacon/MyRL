@@ -78,13 +78,13 @@ public class Island {
 
                 //Make a small island
                 if (row > minRow && row < maxRow && col > minCol && col < maxCol){
-                    tile.texture = randomGrass();
-                    tile.type = Enums.TILETYPE.GRASS;
+                    tile.setTexture(randomGrass());
+                    tile.setType(Enums.TILETYPE.GRASS);
 
 
                     if (row == firstTileRow + 1){
-                        tile.texture = Media.cliff;
-                        tile.type = Enums.TILETYPE.CLIFF;
+                        tile.setTexture(Media.cliff);
+                        tile.setType(Enums.TILETYPE.CLIFF);
 
                     } else {
                         //chance to add trees etc
@@ -199,7 +199,7 @@ public class Island {
 
                 for (int r : rows){
                     for (int c: cols){
-                        tile.code += chunk.getTileCode(tile.row + r, tile.col + c);
+                        tile.appendSetCode(chunk.getTileCode(tile.getRow() + r, tile.getCol() + c));
                         updateImage(tile);
                     }
                 }
@@ -212,20 +212,20 @@ public class Island {
 
     private void updateImage(Tile tile) {
         //secondary texture is to add edges to tiles
-        if (Arrays.asList(aGrassLeft).contains(tile.code)){
-            tile.secondaryTexture = Media.grassLeft;
-        } else if (Arrays.asList(aGrassRight).contains(tile.code)){
-            tile.secondaryTexture = Media.grassRight;
-        } else if (Arrays.asList(aGrassRightEnd).contains(tile.code)){
-            tile.secondaryTexture = Media.grassLeftUpperEdge;
-        } else if (Arrays.asList(aGrassLeftEnd).contains(tile.code)){
-            tile.secondaryTexture = Media.grassRightUpperEdge;
-        } else if (Arrays.asList(aGrassTop).contains(tile.code)){
-            tile.secondaryTexture = Media.grassTop;
-        } else if (Arrays.asList(aGrassTopRight).contains(tile.code)){
-            tile.secondaryTexture = Media.grassTopRight;
-        } else if (Arrays.asList(aGrassTopLeft).contains(tile.code)){
-            tile.secondaryTexture = Media.grassTopLeft;
+        if (Arrays.asList(aGrassLeft).contains(tile.getCode())){
+            tile.setSecondaryTexture(Media.grassLeft);
+        } else if (Arrays.asList(aGrassRight).contains(tile.getCode())){
+            tile.setSecondaryTexture(Media.grassRight);
+        } else if (Arrays.asList(aGrassRightEnd).contains(tile.getCode())){
+            tile.setSecondaryTexture(Media.grassLeftUpperEdge);
+        } else if (Arrays.asList(aGrassLeftEnd).contains(tile.getCode())){
+            tile.setSecondaryTexture(Media.grassRightUpperEdge);
+        } else if (Arrays.asList(aGrassTop).contains(tile.getCode())){
+            tile.setSecondaryTexture(Media.grassTop);
+        } else if (Arrays.asList(aGrassTopRight).contains(tile.getCode())){
+            tile.setSecondaryTexture(Media.grassTopRight);
+        } else if (Arrays.asList(aGrassTopLeft).contains(tile.getCode())){
+            tile.setSecondaryTexture(Media.grassTopLeft);
         }
     }
 

@@ -52,7 +52,7 @@ public class GameClass extends ApplicationAdapter {
 
 		island = new Island();
 
-		hero = new Hero(island.getCenterTile().pos);
+		hero = new Hero(island.getCenterTile().getPos());
 
 	}
 
@@ -65,7 +65,7 @@ public class GameClass extends ApplicationAdapter {
 		// Reset the direction values
 
 		hero.update(control);
-		camera.position.lerp(hero.pos, .1f);
+		camera.position.lerp(hero.getPos(), .1f);
 		camera.update();
 
 		// GAME DRAW
@@ -76,9 +76,9 @@ public class GameClass extends ApplicationAdapter {
 		//batch.draw(img, 0, 0);
 		for (ArrayList<Tile> row : island.chunk.tiles){
 			for (Tile tile : row){
-				batch.draw(tile.texture, tile.pos.x, tile.pos.y, tile.size, tile.size );
-				if (tile.secondaryTexture != null) {
-					batch.draw(tile.secondaryTexture, tile.pos.x, tile.pos.y, tile.size, tile.size);
+				batch.draw(tile.getTexture(), tile.getPos().x, tile.getPos().y, tile.getSize(), tile.getSize() );
+				if (tile.getSecondaryTexture() != null) {
+					batch.draw(tile.getSecondaryTexture(), tile.getPos().x, tile.getPos().y, tile.getSize(), tile.getSize());
 				}
 			}
 		}

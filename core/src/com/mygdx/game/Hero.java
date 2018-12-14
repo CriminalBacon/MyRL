@@ -6,14 +6,16 @@ import com.mygdx.game.Enums.ENTITYTYPE;
 
 public class Hero extends Entity {
 
+    private ENTITYTYPE type;
+
     public Hero(Vector3 pos){
-        type = ENTITYTYPE.HERO;
-        width = 8;
-        height = 8;
-        this.pos.x = pos.x;
-        this.pos.y = pos.y;
-        texture = Media.hero;
-        speed = 1;
+        setType(ENTITYTYPE.HERO);
+        setWidth(8);
+        setHeight(8);
+        getPos().x = pos.x;
+        getPos().y = pos.y;
+        setTexture(Media.hero);
+        setSpeed(1);
 
     } //Hero
 
@@ -35,19 +37,27 @@ public class Hero extends Entity {
             directionX = 1;
         }
 
-        pos.x += directionX * speed;
-        pos.y += directionY * speed;
+        getPos().x += directionX * getSpeed();
+        getPos().y += directionY * getSpeed();
 
 
     } //update
 
     public float getCameraX(){
-        return pos.x + width / 2;
+        return getPos().x + getWidth() / 2;
 
     } //getCameraX
 
     public float getCameraY(){
-        return pos.y + height / 2;
+        return getPos().y + getHeight() / 2;
+    }
+
+    public Enums.ENTITYTYPE getType() {
+        return type;
+    }
+
+    public void setType(Enums.ENTITYTYPE type) {
+        this.type = type;
     }
 
 
