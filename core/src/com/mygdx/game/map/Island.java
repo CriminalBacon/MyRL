@@ -55,8 +55,8 @@ public class Island {
         int rngWidth = MathUtils.random(5, 8);
         int rngHeight = MathUtils.random(5, 8);
 
-        int centerTileRow = chunk.numberOfRows / 2;
-        int centerTileCol = chunk.numberOfCols / 2;
+        int centerTileRow = chunk.getNumberOfRows() / 2;
+        int centerTileCol = chunk.getNumberOfCols()/ 2;
         int firstTileRow = centerTileRow - (rngHeight);
 
         int maxRow = centerTileRow + rngHeight;
@@ -70,11 +70,11 @@ public class Island {
         //if number of tiles is needed.
         //int numTiles = ((maxCol - minCol) - 1) * ((maxRow - minRow) - 1);
 
-        for (int row = 0; row < chunk.numberOfRows; row++){
-            for (int col = 0; col < chunk.numberOfCols; col++){
+        for (int row = 0; row < chunk.getNumberOfRows(); row++){
+            for (int col = 0; col < chunk.getNumberOfCols(); col++){
                 //Create Tile
                 //initially create all water
-                Tile tile = new Tile(col, row, chunk.tileSize, Enums.TILETYPE.WATER, randomWater());
+                Tile tile = new Tile(col, row, chunk.getTileSize(), Enums.TILETYPE.WATER, randomWater());
 
                 //Make a small island
                 if (row > minRow && row < maxRow && col > minCol && col < maxCol){
@@ -97,7 +97,7 @@ public class Island {
                     chunkRow.add(tile);
 
                     //last row and column?
-                    if (row == chunk.numberOfRows - 1 && col == chunk.numberOfCols - 1){
+                    if (row == chunk.getNumberOfRows() - 1 && col == chunk.getNumberOfCols() - 1){
                         chunk.tiles.add(chunkRow);
                     }
 

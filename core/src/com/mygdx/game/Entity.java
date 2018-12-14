@@ -8,8 +8,8 @@ import com.badlogic.gdx.math.Vector3;
 
 public class Entity {
 
-    public Vector2 pos;
-    public Vector3 pos3;
+
+    public Vector3 pos;
     public Texture texture;
     public float width;
     public float height;
@@ -21,8 +21,8 @@ public class Entity {
     float directionY = 0;
 
     public Entity(){
-        pos = new Vector2();
-        pos3 = new Vector3();
+        pos = new Vector3();
+
     } //Entity
 
 

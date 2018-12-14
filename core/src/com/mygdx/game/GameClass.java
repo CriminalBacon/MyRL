@@ -65,7 +65,7 @@ public class GameClass extends ApplicationAdapter {
 		// Reset the direction values
 
 		hero.update(control);
-		camera.position.lerp(hero.pos3, .1f);
+		camera.position.lerp(hero.pos, .1f);
 		camera.update();
 
 		// GAME DRAW

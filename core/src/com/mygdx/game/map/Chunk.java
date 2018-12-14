@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 public class Chunk {
 
-    int numberOfRows;
-    int numberOfCols;
-    int tileSize;
+    private int numberOfRows;
+    private int numberOfCols;
+    private int tileSize;
 
     //tiles are split into arrays of rows
-    public ArrayList<ArrayList<Tile>> tiles = new ArrayList<ArrayList<Tile>>();
+    public ArrayList<ArrayList<Tile>> tiles;
 
     public Chunk(int rows, int cols, int tileSize){
         tiles = new ArrayList<ArrayList<Tile>>();
@@ -57,5 +57,35 @@ public class Chunk {
 
     } //getTileCode
 
+    public int getNumberOfRows() {
+        return numberOfRows;
+    }
 
+    public void setNumberOfRows(int numberOfRows) {
+        this.numberOfRows = numberOfRows;
+    }
+
+    public int getNumberOfCols() {
+        return numberOfCols;
+    }
+
+    public void setNumberOfCols(int numberOfCols) {
+        this.numberOfCols = numberOfCols;
+    }
+
+    public int getTileSize() {
+        return tileSize;
+    }
+
+    public void setTileSize(int tileSize) {
+        this.tileSize = tileSize;
+    }
+
+    public ArrayList<ArrayList<Tile>> getTiles() {
+        return tiles;
+    }
+
+    public void setTiles(ArrayList<ArrayList<Tile>> tiles) {
+        this.tiles = tiles;
+    }
 } //class Chunk
