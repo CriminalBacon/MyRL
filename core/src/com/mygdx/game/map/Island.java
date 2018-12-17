@@ -4,9 +4,12 @@ package com.mygdx.game.map;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.mygdx.game.Entity;
 import com.mygdx.game.Enums;
 import com.mygdx.game.Media;
+import com.mygdx.game.box2d.Box2DHelper;
+import com.mygdx.game.box2d.Box2DWorld;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,11 +44,24 @@ public class Island {
     String[] aGrassTopLeft = {"000000001"};
 
 
-    public Island(){
+    public Island(Box2DWorld box2D){
         setupTiles();
         codeTiles();
+        generateHitBoxes(box2D);
 
     }
+
+    // loops through all the tiles checking that they are not passable, but not all water
+    private void generateHitBoxes(Box2DWorld box2D) {
+        for(ArrayList<Tile> row : chunk.getTiles()){
+            for (Tile tile : row){
+                if (tile.isNotPassable() && tile.notIsAllWater()){
+                    Box2DHelper.createBody(box2D.world, chunk.getTileSize(), chunk.getTileSize(), tile.getPos(), BodyDef.BodyType.StaticBody);
+                }
+            }
+        }
+
+    } //generateHitBoxes
 
 
     private void setupTiles(){

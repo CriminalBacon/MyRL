@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.box2d.Box2DWorld;
 import com.mygdx.game.map.Island;
 import com.mygdx.game.map.Tile;
 
@@ -19,6 +20,7 @@ public class GameClass extends ApplicationAdapter {
 	Texture img;
 	Island island;
 	Hero hero;
+	Box2DWorld box2D;
 
 	// Display Size
 	private int displayW;
@@ -28,6 +30,10 @@ public class GameClass extends ApplicationAdapter {
 
 	@Override
 	public void create () {
+
+		//loads textures
+		Media.loadAssets();
+
 		batch = new SpriteBatch();
 		img = new Texture("assets/badlogic.jpg");
 
@@ -46,13 +52,14 @@ public class GameClass extends ApplicationAdapter {
 		control = new Control(displayW, displayH, camera);
 		Gdx.input.setInputProcessor(control);
 
+		//Box2D
+		box2D = new Box2DWorld();
 
-		//loads textures
-		Media.loadAssets();
+		//Island
+		island = new Island(box2D);
 
-		island = new Island();
-
-		hero = new Hero(island.getCenterTile().getPos());
+		//Hero
+		hero = new Hero(island.getCenterTile().getPos(), box2D);
 
 	}
 
@@ -85,6 +92,9 @@ public class GameClass extends ApplicationAdapter {
 
 		hero.draw(batch);
 		batch.end();
+
+		//call tick method to draw debug lines, pass in control to check it has debug = true;
+		box2D.tick(camera, control);
 
 	} //render
 

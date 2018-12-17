@@ -4,6 +4,7 @@ package com.mygdx.game;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.physics.box2d.Body;
 
 public class Entity {
 
@@ -19,6 +20,8 @@ public class Entity {
 
     float directionX = 0;
     float directionY = 0;
+
+    private Body body;
 
     public Entity(){
         pos = new Vector3();
@@ -71,7 +74,11 @@ public class Entity {
         this.height = height;
     }
 
+    public Body getBody() {
+        return body;
+    }
 
-
-
+    public void setBody(Body body) {
+        this.body = body;
+    }
 } //class Entity

@@ -52,7 +52,7 @@ public class Chunk {
 
         }
 
-        return null;
+        return "0";
 
 
     } //getTileCode

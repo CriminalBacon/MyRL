@@ -57,6 +57,18 @@ public class Tile extends Entity {
 
     } //isNotPassable
 
+    public boolean isAllWater(){
+        return code.equals("000000000");
+
+    } //isAllWater
+
+    public boolean notIsAllWater(){
+        return !isAllWater();
+
+    } //notIsAllWater
+
+
+
 
     public int getSize() {
         return size;

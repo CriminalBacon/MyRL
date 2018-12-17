@@ -1,5 +1,6 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputProcessor;
@@ -11,6 +12,7 @@ public class Control extends InputAdapter implements InputProcessor {
     public boolean down;
     public boolean left;
     public boolean right;
+    public boolean debug;
 
     OrthographicCamera camera;
     int screenHeight;
@@ -85,6 +87,11 @@ public class Control extends InputAdapter implements InputProcessor {
             case Input.Keys.D:
                 right = false;
                 break;
+            case Input.Keys.ESCAPE:
+                Gdx.app.exit();
+                break;
+            case Input.Keys.BACKSPACE:
+                debug = !debug;
         } //switch
 
         return false;
