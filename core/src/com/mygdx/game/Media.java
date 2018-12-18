@@ -13,6 +13,7 @@ public class Media {
     public static Texture water01, water02, water03, water04;
     public static Texture cliff, water;
     public static Texture hero;
+    public static Texture tree;
 
 
 
@@ -40,6 +41,8 @@ public class Media {
 
         hero = new Texture("assets/entities/hero/hero.png");
 
+        tree = new Texture("assets/entities/tree.png");
+
     } //loadAssets
 
     public void dispose(){
@@ -59,6 +62,7 @@ public class Media {
         water03.dispose();
         water04.dispose();
         cliff.dispose();
+        tree.dispose();
 
     } //dispose
 

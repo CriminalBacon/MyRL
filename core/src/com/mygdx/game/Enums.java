@@ -10,7 +10,8 @@ public class Enums {
     } //TILETYPE
 
     public enum ENTITYTYPE{
-        HERO
+        HERO,
+        TREE
 
     } //ENTITYTYPE
 

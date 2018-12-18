@@ -12,6 +12,7 @@ import com.mygdx.game.map.Island;
 import com.mygdx.game.map.Tile;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class GameClass extends ApplicationAdapter {
 	OrthographicCamera camera;
@@ -35,7 +36,7 @@ public class GameClass extends ApplicationAdapter {
 		Media.loadAssets();
 
 		batch = new SpriteBatch();
-		img = new Texture("assets/badlogic.jpg");
+		//img = new Texture("assets/badlogic.jpg");
 
 		// CAMERA
 		displayW = Gdx.graphics.getWidth();
@@ -60,6 +61,8 @@ public class GameClass extends ApplicationAdapter {
 
 		//Hero
 		hero = new Hero(island.getCenterTile().getPos(), box2D);
+		island.getEntities().add(hero);
+
 
 	}
 
@@ -74,6 +77,8 @@ public class GameClass extends ApplicationAdapter {
 		hero.update(control);
 		camera.position.lerp(hero.getPos(), .1f);
 		camera.update();
+
+		Collections.sort(island.getEntities());
 
 		// GAME DRAW
 		batch.setProjectionMatrix(camera.combined);
@@ -90,11 +95,26 @@ public class GameClass extends ApplicationAdapter {
 			}
 		}
 
-		hero.draw(batch);
+
+		//Draw all entities
+		for (Entity e : island.getEntities()){
+			e.draw(batch);
+		}
+
 		batch.end();
 
 		//call tick method to draw debug lines, pass in control to check it has debug = true;
 		box2D.tick(camera, control);
+
+
+		//Reset world
+		if(control.reset){
+			island.reset(box2D);
+			hero.reset(box2D, island.getCenterTile().getPos());
+			island.getEntities().add(hero);
+			control.reset = false;
+		}
+
 
 	} //render
 

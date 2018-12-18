@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
 
-public class Entity {
+public class Entity implements Comparable<Entity>{
 
 
     private Vector3 pos;
@@ -81,4 +81,16 @@ public class Entity {
     public void setBody(Body body) {
         this.body = body;
     }
+
+    @Override
+    public int compareTo(Entity e) {
+        float tempY = e.getPos().y;
+        float compareY = getPos().y;
+
+        return (tempY < compareY) ? -1 : (tempY > compareY) ? 1 : 0;
+    } //compareTo
+
+
+
+
 } //class Entity

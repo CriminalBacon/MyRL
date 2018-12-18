@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.mygdx.game.Enums.ENTITYTYPE;
@@ -21,7 +22,7 @@ public class Hero extends Entity {
         setSpeed(30);
 
         //create a new Dynamic body
-        setBody(Box2DHelper.createBody(box2D.world, getWidth(), getHeight()/2, pos, BodyDef.BodyType.DynamicBody ));
+        reset(box2D, pos);
 
     } //Hero
 
@@ -68,6 +69,19 @@ public class Hero extends Entity {
     public void setType(Enums.ENTITYTYPE type) {
         this.type = type;
     }
+
+    public void printDetails(){
+        System.out.println("Pos: " + getPos().toString());
+    }
+
+
+    //reposition hero to center and recreate hitbox
+    public void reset(Box2DWorld box2D, Vector3 pos){
+        getPos().set(pos);
+        setBody(Box2DHelper.createBody(box2D.world, getWidth()/2, getHeight()/2,
+                getWidth()/4, 0, pos, BodyDef.BodyType.DynamicBody ));
+    }
+
 
 
 } //class Hero

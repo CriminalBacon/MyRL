@@ -1,13 +1,13 @@
 package com.mygdx.game.map;
 
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.mygdx.game.Entity;
 import com.mygdx.game.Enums;
 import com.mygdx.game.Media;
+import com.mygdx.game.Tree;
 import com.mygdx.game.box2d.Box2DHelper;
 import com.mygdx.game.box2d.Box2DWorld;
 
@@ -27,7 +27,7 @@ public class Island {
 
     // One Chunk
     public Chunk chunk;
-    ArrayList<Entity> entities = new ArrayList<Entity>();
+    private ArrayList<Entity> entities = new ArrayList<Entity>();
 
     //Track click
     int currentTileNumber;
@@ -45,9 +45,7 @@ public class Island {
 
 
     public Island(Box2DWorld box2D){
-        setupTiles();
-        codeTiles();
-        generateHitBoxes(box2D);
+        reset(box2D);
 
     }
 
@@ -56,7 +54,7 @@ public class Island {
         for(ArrayList<Tile> row : chunk.getTiles()){
             for (Tile tile : row){
                 if (tile.isNotPassable() && tile.notIsAllWater()){
-                    Box2DHelper.createBody(box2D.world, chunk.getTileSize(), chunk.getTileSize(), tile.getPos(), BodyDef.BodyType.StaticBody);
+                    Box2DHelper.createBody(box2D.world, chunk.getTileSize(), chunk.getTileSize(), 0, 0, tile.getPos(), BodyDef.BodyType.StaticBody);
                 }
             }
         }
@@ -250,4 +248,42 @@ public class Island {
     }
 
 
+    public void addEntities(Box2DWorld box2D){
+        //Loop all tiles and add random trees
+        for (ArrayList<Tile> row : chunk.getTiles()){
+            for (Tile tile : row){
+                if (tile.isGrass()){
+                if (MathUtils.random(100) > 90) {
+                    entities.add(new Tree(tile.getPos(), box2D));
+                    }
+
+                }
+            }
+        }
+
+    } //addEntities
+
+    public ArrayList<Entity> getEntities() {
+        return entities;
+    }
+
+
+    //Reset entities
+    public void reset(Box2DWorld box2D){
+        entities.clear();
+        box2D.clearAllBodies();
+        setupTiles();
+        codeTiles();
+        generateHitBoxes(box2D);
+        addEntities(box2D);
+
+    } //reset
+
+
+    public void printEntities(){
+        for (Entity entity : entities){
+            System.out.println(entity.getTexture().toString() + " X: " + entity.getPos().x + " " + " Y: " + entity.getPos().y + " " );
+
+        }
+    }
 } //class Island

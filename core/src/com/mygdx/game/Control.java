@@ -13,6 +13,8 @@ public class Control extends InputAdapter implements InputProcessor {
     public boolean left;
     public boolean right;
     public boolean debug;
+    public boolean details;
+    public boolean reset;
 
     OrthographicCamera camera;
     int screenHeight;
@@ -92,6 +94,14 @@ public class Control extends InputAdapter implements InputProcessor {
                 break;
             case Input.Keys.BACKSPACE:
                 debug = !debug;
+                break;
+            case Input.Keys.P:
+                details = !details;
+                break;
+            case Input.Keys.R:
+                reset = true;
+                break;
+
         } //switch
 
         return false;
