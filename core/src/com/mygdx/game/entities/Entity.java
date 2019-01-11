@@ -117,7 +117,7 @@ public class Entity implements Comparable<Entity>{
 
     } //collision
 
-    public void interact(){
+    public void interact(Entity entity){
 
 
     } //interact

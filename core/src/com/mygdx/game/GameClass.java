@@ -98,7 +98,15 @@ public class GameClass extends ApplicationAdapter {
 
 		hero.update(control);
 
-		camera.position.lerp(hero.getPos(), .1f);
+
+		//Hero Position
+		if (Rumble.getRumbeTimeLeft() > 0){
+			Rumble.tick(Gdx.graphics.getDeltaTime());
+			camera.translate(Rumble.getPos());
+		} else {
+			camera.position.lerp(hero.getPos(), .1f);
+		}
+		
 		camera.update();
 
 		Collections.sort(island.getEntities());

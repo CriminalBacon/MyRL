@@ -65,7 +65,7 @@ public class Hero extends Entity {
 
         //if interact key pressed and interactEntities present, interact with the first in list
         if (control.interact && interactEntities.size() > 0){
-            interactEntities.get(0).interact();
+            interactEntities.get(0).interact(this);
         }
 
         //reset interact

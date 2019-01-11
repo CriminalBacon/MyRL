@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.mygdx.game.Enums;
 import com.mygdx.game.Media;
+import com.mygdx.game.Rumble;
 import com.mygdx.game.box2d.Box2DHelper;
 import com.mygdx.game.box2d.Box2DWorld;
 import com.mygdx.game.entities.Entity;
@@ -34,7 +35,9 @@ public class Tree extends Entity {
     } //Tree
 
     @Override
-    public void interact() {
+    public void interact(Entity entity) {
         setRemove(true);
-    }
+        Rumble.rumble(1, 0.2f);
+    } //interact
+
 } //class Tree
