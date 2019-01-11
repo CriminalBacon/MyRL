@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.mygdx.game.Enums;
+import com.mygdx.game.Inventory;
 import com.mygdx.game.box2d.Box2DWorld;
 
 public class Entity implements Comparable<Entity>{
@@ -29,6 +30,8 @@ public class Entity implements Comparable<Entity>{
     private float directionY = 0;
 
     private Body body;
+
+    private Inventory inventory;
 
     public Entity(){
         pos = new Vector3();
@@ -112,6 +115,16 @@ public class Entity implements Comparable<Entity>{
     public void setRemove(boolean remove) {
         this.remove = remove;
     }
+
+    public Inventory getInventory() {
+        return inventory;
+
+    } //getInventory
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
+
+    } //setInventory
 
     public void collision(Entity entity, boolean begin){
 

@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.mygdx.game.Control;
 import com.mygdx.game.Enums.ENTITYTYPE;
+import com.mygdx.game.Inventory;
 import com.mygdx.game.Media;
 import com.mygdx.game.box2d.Box2DHelper;
 import com.mygdx.game.box2d.Box2DWorld;
@@ -29,6 +30,7 @@ public class Hero extends Entity {
         setTexture(Media.hero);
         setSpeed(30);
         setEntityType(ENTITYTYPE.HERO);
+        setInventory(new Inventory());
 
         //create a new Dynamic body
         reset(box2D, pos);

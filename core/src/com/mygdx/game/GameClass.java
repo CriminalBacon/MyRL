@@ -95,6 +95,11 @@ public class GameClass extends ApplicationAdapter {
 			hero.printInteractEntities();
 		}
 
+		if (control.inventory){
+			hero.getInventory().print();
+			control.inventory = false;
+		}
+
 
 		hero.update(control);
 
@@ -106,7 +111,7 @@ public class GameClass extends ApplicationAdapter {
 		} else {
 			camera.position.lerp(hero.getPos(), .1f);
 		}
-		
+
 		camera.update();
 
 		Collections.sort(island.getEntities());

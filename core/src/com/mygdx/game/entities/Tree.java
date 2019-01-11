@@ -36,8 +36,11 @@ public class Tree extends Entity {
 
     @Override
     public void interact(Entity entity) {
-        setRemove(true);
-        Rumble.rumble(1, 0.2f);
+        if(entity.getInventory() != null) {
+            entity.getInventory().addEntity(this);
+            setRemove(true);
+            Rumble.rumble(1, 0.2f);
+        }
     } //interact
 
 } //class Tree
