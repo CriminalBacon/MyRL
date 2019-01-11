@@ -1,10 +1,11 @@
-package com.mygdx.game;
+package com.mygdx.game.entities;
 
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.mygdx.game.Enums;
 import com.mygdx.game.box2d.Box2DWorld;
 
 public class Entity implements Comparable<Entity>{
@@ -24,8 +25,8 @@ public class Entity implements Comparable<Entity>{
     private float speed;
 
 
-    float directionX = 0;
-    float directionY = 0;
+    private float directionX = 0;
+    private float directionY = 0;
 
     private Body body;
 

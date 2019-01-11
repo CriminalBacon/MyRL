@@ -1,12 +1,14 @@
-package com.mygdx.game;
+package com.mygdx.game.entities;
 
 
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.mygdx.game.Control;
 import com.mygdx.game.Enums.ENTITYTYPE;
+import com.mygdx.game.Media;
 import com.mygdx.game.box2d.Box2DHelper;
 import com.mygdx.game.box2d.Box2DWorld;
+import com.mygdx.game.entities.Entity;
 
 import java.util.ArrayList;
 
@@ -35,8 +37,8 @@ public class Hero extends Entity {
 
 
     public void update(Control control){
-        directionX = 0;
-        directionY = 0;
+        int directionX = 0;
+        int directionY = 0;
 
         if(control.down){
             directionY = -1;
@@ -80,11 +82,11 @@ public class Hero extends Entity {
         return getPos().y + getHeight() / 2;
     }
 
-    public Enums.ENTITYTYPE getType() {
+    public ENTITYTYPE getType() {
         return type;
     }
 
-    public void setType(Enums.ENTITYTYPE type) {
+    public void setType(ENTITYTYPE type) {
         this.type = type;
     }
 

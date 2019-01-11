@@ -4,10 +4,10 @@ package com.mygdx.game.map;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.mygdx.game.Entity;
+import com.mygdx.game.entities.Entity;
 import com.mygdx.game.Enums;
 import com.mygdx.game.Media;
-import com.mygdx.game.Tree;
+import com.mygdx.game.entities.Tree;
 import com.mygdx.game.box2d.Box2DHelper;
 import com.mygdx.game.box2d.Box2DWorld;
 

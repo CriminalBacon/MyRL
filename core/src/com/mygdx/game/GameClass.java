@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.box2d.Box2DWorld;
+import com.mygdx.game.entities.Entity;
+import com.mygdx.game.entities.Hero;
 import com.mygdx.game.map.Island;
 import com.mygdx.game.map.Tile;
 

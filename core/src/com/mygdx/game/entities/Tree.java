@@ -1,10 +1,13 @@
-package com.mygdx.game;
+package com.mygdx.game.entities;
 
 
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.mygdx.game.Enums;
+import com.mygdx.game.Media;
 import com.mygdx.game.box2d.Box2DHelper;
 import com.mygdx.game.box2d.Box2DWorld;
+import com.mygdx.game.entities.Entity;
 
 public class Tree extends Entity {
 
