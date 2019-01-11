@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.mygdx.game.box2d.Box2DWorld;
 
 public class Entity implements Comparable<Entity>{
 
@@ -14,7 +15,12 @@ public class Entity implements Comparable<Entity>{
     private float width;
     private float height;
 
-    //private Enums.ENTITYTYPE type;
+    private int hashcode;
+    private Body sensor;
+    private boolean remove;
+
+
+    private Enums.ENTITYTYPE entityType;
     private float speed;
 
 
@@ -82,6 +88,53 @@ public class Entity implements Comparable<Entity>{
         this.body = body;
     }
 
+    public int getEntityHashcode() {
+        return hashcode;
+    }
+
+    public void setHashcode(int hashcode) {
+        this.hashcode = hashcode;
+    }
+
+    public Body getSensor() {
+        return sensor;
+    }
+
+    public void setSensor(Body sensor) {
+        this.sensor = sensor;
+    }
+
+    public boolean isRemove() {
+        return remove;
+    }
+
+    public void setRemove(boolean remove) {
+        this.remove = remove;
+    }
+
+    public void collision(Entity entity, boolean begin){
+
+    } //collision
+
+    public void interact(){
+
+
+    } //interact
+
+
+    public void removeBodies(Box2DWorld box2D){
+        if (sensor != null){
+            box2D.world.destroyBody(sensor);
+        }
+
+        if (body != null){
+            box2D.world.destroyBody(body);
+
+        }
+
+    } //removeBodies
+
+
     @Override
     public int compareTo(Entity e) {
         float tempY = e.getPos().y;
@@ -90,7 +143,11 @@ public class Entity implements Comparable<Entity>{
         return (tempY < compareY) ? -1 : (tempY > compareY) ? 1 : 0;
     } //compareTo
 
+    public Enums.ENTITYTYPE getEntityType(){
+        return entityType;
+    }
 
-
-
+    public void setEntityType(Enums.ENTITYTYPE entityType) {
+        this.entityType = entityType;
+    }
 } //class Entity

@@ -13,6 +13,7 @@ import com.mygdx.game.box2d.Box2DWorld;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 
 
 public class Island {
@@ -285,5 +286,23 @@ public class Island {
             System.out.println(entity.getTexture().toString() + " X: " + entity.getPos().x + " " + " Y: " + entity.getPos().y + " " );
 
         }
-    }
+    } //printEntities
+
+    public void clearRemovedEntities(Box2DWorld box2D) {
+        Iterator<Entity> it = entities.iterator();
+        while(it.hasNext()){
+            Entity e = it.next();
+            if (e.isRemove()){
+                e.removeBodies(box2D);
+                box2D.removeEntity(e);
+
+                it.remove();
+            }
+        }
+
+
+    } //clearRemovedEntities
+
+
+
 } //class Island

@@ -12,18 +12,26 @@ public class Tree extends Entity {
 
     public Tree(Vector3 pos, Box2DWorld box2d){
         super();
-        type = Enums.ENTITYTYPE.TREE;
+        //type = Enums.ENTITYTYPE.TREE;
         setWidth(8);
         setHeight(8);
         setPos(pos);
         setTexture(Media.tree);
+        setEntityType(Enums.ENTITYTYPE.TREE);
 
         setBody(Box2DHelper.createBody(box2d.world, getWidth()/2,
                 getHeight()/2, getWidth()/4, 0,
                 getPos(), BodyDef.BodyType.StaticBody));
 
+        setSensor(Box2DHelper.createSensor(box2d.world, getWidth(), getHeight() * 0.85f,
+                getWidth()/2, getHeight()/3, pos, BodyDef.BodyType.DynamicBody));
+
+        setHashcode(getSensor().getFixtureList().get(0).hashCode());
+
     } //Tree
 
-
-
+    @Override
+    public void interact() {
+        setRemove(true);
+    }
 } //class Tree

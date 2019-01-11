@@ -29,5 +29,30 @@ public class Box2DHelper {
 
     } //Body
 
+    //creates hit boxes that are used like triggers.
+    public static Body createSensor(World world, float width, float height, float xOffset, float yOffset, Vector3 pos, BodyDef.BodyType type){
+        Body body;
+        BodyDef bodyDef = new BodyDef();
+        bodyDef.position.x = pos.x + xOffset;
+        bodyDef.position.y = pos.y + yOffset;
+        bodyDef.angle = 0;
+        bodyDef.fixedRotation = true;
+        bodyDef.type = type;
+        body = world.createBody(bodyDef);
+
+        FixtureDef fixtureDef = new FixtureDef();
+        PolygonShape boxShape = new PolygonShape();
+        boxShape.setAsBox(width /2, height/2);
+
+        fixtureDef.shape = boxShape;
+        fixtureDef.isSensor = true;
+
+        body.createFixture(fixtureDef);
+        boxShape.dispose();
+
+        return body;
+
+    } //createSensor
+
 
 } //class Box2DHelper

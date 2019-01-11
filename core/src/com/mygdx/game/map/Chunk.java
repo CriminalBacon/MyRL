@@ -21,7 +21,6 @@ public class Chunk {
 
 
     public Tile getTile(int row, int col){
-        System.out.println("Row: " + row + " Col: " + col);
         ArrayList<Tile> chunkRow;
         if(tiles.size() > row && row >= 0){
             chunkRow = tiles.get(row);

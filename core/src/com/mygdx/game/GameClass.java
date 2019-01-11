@@ -15,13 +15,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class GameClass extends ApplicationAdapter {
-	OrthographicCamera camera;
-	Control control;
-	SpriteBatch batch;
-	Texture img;
-	Island island;
-	Hero hero;
-	Box2DWorld box2D;
+	private OrthographicCamera camera;
+	private Control control;
+	private SpriteBatch batch;
+	private Texture img;
+	private Island island;
+	private Hero hero;
+	private Box2DWorld box2D;
 
 	// Display Size
 	private int displayW;
@@ -63,6 +63,9 @@ public class GameClass extends ApplicationAdapter {
 		hero = new Hero(island.getCenterTile().getPos(), box2D);
 		island.getEntities().add(hero);
 
+		//HashMap of Entities for collisions
+		box2D.populateEntityMap(island.getEntities());
+
 
 	}
 
@@ -74,7 +77,25 @@ public class GameClass extends ApplicationAdapter {
 		// GAME LOGIC
 		// Reset the direction values
 
+		//Reset world
+		if(control.reset){
+			island.reset(box2D);
+			hero.reset(box2D, island.getCenterTile().getPos());
+			island.getEntities().add(hero);
+
+			//repopulate hashmap
+			box2D.populateEntityMap(island.getEntities());
+
+			control.reset = false;
+		}
+
+		if (control.interact){
+			hero.printInteractEntities();
+		}
+
+
 		hero.update(control);
+
 		camera.position.lerp(hero.getPos(), .1f);
 		camera.update();
 
@@ -105,16 +126,7 @@ public class GameClass extends ApplicationAdapter {
 
 		//call tick method to draw debug lines, pass in control to check it has debug = true;
 		box2D.tick(camera, control);
-
-
-		//Reset world
-		if(control.reset){
-			island.reset(box2D);
-			hero.reset(box2D, island.getCenterTile().getPos());
-			island.getEntities().add(hero);
-			control.reset = false;
-		}
-
+		island.clearRemovedEntities(box2D);
 
 	} //render
 
